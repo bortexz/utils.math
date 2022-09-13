@@ -48,13 +48,14 @@
      (.setScale rv (.scale step)))))
 
 (defn mean
-  "Calculates the mean of given collection of numbers `xs`"
+  "Calculates the mean of given reducible/counted values `xs`."
   [xs]
   (/ (reduce + 0 xs)
      (count xs)))
 
 (defn variance
-  "Calculates the variance of values `xs`. If optional arg `bessel?` is true, applies bessel's correction and uses n-1 
+  "Calculates the variance of reducible/counted values `xs`.
+   If optional arg `bessel?` is true, applies bessel's correction and uses n-1 
    instead of n as divisor."
   ([xs] (variance xs false))
   ([xs bessel?]
@@ -67,7 +68,8 @@
                 bessel? (dec))))))
 
 (defn standard-deviation
-  "Calculates the standard deviation of values `xs`. If optional arg `bessel?` is true, applies bessel's correction 
+  "Calculates the standard deviation of reducible/counted values `xs`.
+   If optional arg `bessel?` is true, applies bessel's correction 
    and uses n-1 instead of n as divisor."
   ([xs] (standard-deviation xs false))
   ([xs bessel?] (math-nt/sqrt (variance xs bessel?))))
